@@ -55,7 +55,7 @@ public struct OklchColour: Equatable {
         let oklab = Self.OklchToOkLab(oklch: oklch)
         let lms = Self.OklabToLMS(oklab: oklab)
         let linear = Self.LMSToLinearRGB(lms: lms)
-        let srgb = Self.linearRGBToSRGB(rgb: linear)
+        let srgb = clamp(Self.linearRGBToSRGB(rgb: linear), min: 0.0, max: 1.0)
         return (srgb.x, srgb.y, srgb.z)
     }
     
