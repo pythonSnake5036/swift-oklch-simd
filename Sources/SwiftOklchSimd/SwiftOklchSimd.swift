@@ -59,6 +59,16 @@ public struct OklchColour: Equatable {
         return (srgb.x, srgb.y, srgb.z)
     }
     
+    /**
+        Returns the perceptual colour difference with `colour`
+     */
+    public func difference(_ colour: OklchColour) -> Float {
+        let lab1 = Self.OklchToOkLab(oklch: simd_float3(lightness, chroma, hue))
+        let lab2 = Self.OklchToOkLab(oklch: simd_float3(colour.lightness, colour.chroma, colour.hue))
+        
+        return distance(lab1, lab2)
+    }
+    
     private static func sRGBToLinearRGB(rgb: simd_float3) -> simd_float3 {
         var out = simd_float3()
         out.x = rgb.x <= 0.04045 ? rgb.x / 12.92 : pow((rgb.x + 0.055) / 1.055, 2.4)

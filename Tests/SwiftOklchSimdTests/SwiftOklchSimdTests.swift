@@ -18,3 +18,10 @@ import Testing
     let colour = OklchColour(lightness: 0.6999109, chroma: 0.10010426, hue: -2.789962)
     #expect(colour.toSRGB() == (r, g, b))
 }
+
+@Test func difference() async throws {
+    let c1 = OklchColour.fromRGB(r: 255, g: 0, b: 0)
+    let c2 = OklchColour.fromRGB(r: 0, g: 255, b: 0)
+    
+    #expect(c1.difference(c2) == 41.932644)
+}
