@@ -4,6 +4,8 @@ A Swift package for converting between sRGB and Oklch colour spaces, with SIMD a
 
 Usage:
 ```swift
+import SwiftOklchSimd
+
 // Convert from sRGB to Oklch
 let colour = OklchColour.fromRGB(r: 255, g: 0, b: 0)
 
